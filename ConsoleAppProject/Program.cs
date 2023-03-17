@@ -30,7 +30,7 @@ namespace ConsoleAppProject
             Console.WriteLine(" Select any of the number : ");
             Console.WriteLine("1. APP 01");
             Console.WriteLine("2. APP 02");
-
+            Console.WriteLine("3. App 03");
             Console.WriteLine();
             Console.WriteLine("Please Enter any number of App you want to open ");
             string choice = Console.ReadLine();
@@ -47,6 +47,12 @@ namespace ConsoleAppProject
 
                 BMI bmi = new BMI();
                 bmi.Run1();
+            }
+            if (choice == "3")
+            {
+                StudentGrades studentgrades = new StudentGrades();
+                studentgrades.Run3();
+
             }
 
         }
