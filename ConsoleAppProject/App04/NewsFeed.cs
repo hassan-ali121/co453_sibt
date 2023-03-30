@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 
@@ -14,22 +14,24 @@ namespace ConsoleAppProject.App04
     /// This version does not save the data to disk, and it does not provide any
     /// search or ordering functions.
     ///</summary>
-    ///<author>
-    ///  Michael Kölling and David J. Barnes
-    ///  version 0.1
-    ///</author> 
+
     public class NewsFeed
     {
-        private readonly List<MessagePost> messages;
-        private readonly List<PhotoPost> photos;
+        private readonly List<post> posts;
+        
 
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
         public NewsFeed()
         {
-            messages = new List<MessagePost>();
-            photos = new List<PhotoPost>();
+            posts = new List<post>();
+            MessagePost post = new MessagePost("Sibt", "hello world");
+            AddMessagePost(post);
+
+            PhotoPost photoPost = new PhotoPost("sibt", "helloWorld.PNG","visual studio code");
+            AddPhotoPost(photoPost);
+            
         }
 
 
@@ -40,7 +42,7 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddMessagePost(MessagePost message)
         {
-            messages.Add(message);
+            posts.Add(message);
         }
 
         ///<summary>
@@ -50,7 +52,7 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
-            photos.Add(photo);
+            posts.Add(photo);
         }
 
         ///<summary>
@@ -60,19 +62,29 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             // display all text posts
-            foreach (MessagePost message in messages)
+            foreach (post post in posts)
             {
-                message.Display();
+                post.Display();
                 Console.WriteLine();   // empty line between posts
             }
 
-            // display all photos
-            foreach (PhotoPost photo in photos)
+            
+        }
+        public void DisplayLikedPosts()
+        {
+            Console.WriteLine("Liked Posts");
+            Console.WriteLine("-----------");
+
+            foreach (var post in posts)
             {
-                photo.Display();
-                Console.WriteLine();   // empty line between posts
+                if (post.likes > 0)
+                {
+                    post.Display();
+                    Console.WriteLine();
+                }
             }
         }
     }
 
 }
+
